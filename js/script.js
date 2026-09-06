@@ -92,10 +92,11 @@
     document.body.appendChild(widget);
 
         // بعد سطر حقن الشات بوت في الصفحة مباشرة:
-    document.body.appendChild(widgetContainer);
+    // حقن الشات بوت في الصفحة
+    document.body.appendChild(widget);
 
-    // إجبار محرك المتصفح على إعادة حساب التنسيق فوراً (Force Reflow)
-    void widgetContainer.offsetHeight;
+    // إجبار محرك المتصفح على التحديث باستخدام اسم المتغير الصحيح (widget)
+    void widget.offsetHeight;
     window.dispatchEvent(new Event('resize'));
 
     // العناصر
