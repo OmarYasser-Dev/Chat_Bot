@@ -13,7 +13,7 @@
     // 2. تحميل ملف chatbot.css
     const css = document.createElement("link");
     css.rel = "stylesheet";
-    css.href = "https://omaryasser-dev.github.io/Chat_Bot/css/style.css";
+    css.href = "https://elesawy-chatbot.hstn.me/css/style.css";
     document.head.appendChild(css);
 
     // 3. إنشاء الودجت
@@ -90,6 +90,13 @@
     `;
 
     document.body.appendChild(widget);
+
+        // بعد سطر حقن الشات بوت في الصفحة مباشرة:
+    document.body.appendChild(widgetContainer);
+
+    // إجبار محرك المتصفح على إعادة حساب التنسيق فوراً (Force Reflow)
+    void widgetContainer.offsetHeight;
+    window.dispatchEvent(new Event('resize'));
 
     // العناصر
     const toggleButton = document.getElementById("chatbot-toggle");
