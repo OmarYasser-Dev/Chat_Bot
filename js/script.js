@@ -1,3 +1,12 @@
+// استدعاء ملف التنسيقات في بداية السكربت فوراً
+if (!document.getElementById("omar-chatbot-css")) {
+    const link = document.createElement("link");
+    link.id = "omar-chatbot-css";
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = "https://omaryasser-dev.github.io/Chat_Bot/css/style.css";
+    document.head.appendChild(link);
+}
 (function () {
     // منع تحميل الودجت أكثر من مرة
     if (document.getElementById("omar-chatbot-widget")) {
@@ -9,12 +18,6 @@
     fontAwesome.rel = "stylesheet";
     fontAwesome.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css";
     document.head.appendChild(fontAwesome);
-
-    // 2. تحميل ملف chatbot.css
-    const css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = "https://elesawy-chatbot.hstn.me/css/style.css";
-    document.head.appendChild(css);
 
     // 3. إنشاء الودجت
     const widget = document.createElement("div");
@@ -90,13 +93,9 @@
     `;
 
     document.body.appendChild(widget);
-
-        // بعد سطر حقن الشات بوت في الصفحة مباشرة:
-    // حقن الشات بوت في الصفحة
-    document.body.appendChild(widget);
-
-    // إجبار محرك المتصفح على التحديث باستخدام اسم المتغير الصحيح (widget)
     void widget.offsetHeight;
+
+
     window.dispatchEvent(new Event('resize'));
 
     // العناصر
