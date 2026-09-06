@@ -1,8 +1,9 @@
 #omar-chatbot-widget {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    direction: ltr; /* لتطابق تصميم الواجهة الإنجليزية بالصور */
+    direction: ltr;
+    position: relative;
+    z-index: 99999999;
 }
-
 /* =========================
    Floating Button
 ========================= */
@@ -21,7 +22,9 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 20px rgba(32, 130, 255, 0.4);
-    z-index: 999999;
+    z-index: 99999999;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -399,6 +402,7 @@
         left: 10px;
         bottom: 80px;
         width: auto;
-        height: calc(100vh - 100px);
+        height: calc(100dvh - 100px);
+        max-height: 80vh;
     }
 }
