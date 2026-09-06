@@ -13,7 +13,7 @@
     // 2. تحميل ملف chatbot.css
     const css = document.createElement("link");
     css.rel = "stylesheet";
-    css.href = "https://elesawy-chatbot.hstn.me/css/style.css";
+    css.href = "https://omaryasser-dev.github.io/Chat_Bot/css/style.css";
     document.head.appendChild(css);
 
     // 3. إنشاء الودجت
