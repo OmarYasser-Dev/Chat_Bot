@@ -1,21 +1,21 @@
+
+
 #omar-chatbot-widget {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     direction: ltr;
-    position: fixed !important;
-    right: 25px;
-    bottom: 25px;
-    z-index: 99999999 !important;
-    will-change: transform, opacity;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-}
+} 
+
+
 
 /* =========================
    Floating Button
 ========================= */
 
+
 #chatbot-toggle {
-    position: relative;
+    position: fixed !important;
+    right: 25px;
+    bottom: 25px;
     width: 65px;
     height: 65px;
     border: none;
@@ -26,9 +26,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 20px rgba(32, 130, 255, 0.4);
-    z-index: 99999999;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    z-index: 99999999 !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -401,12 +399,20 @@
 /* Responsive */
 
 @media (max-width: 480px) {
+    #chatbot-toggle {
+        right: 15px !important;
+        bottom: 15px !important;
+        width: 55px !important;
+        height: 55px !important;
+    }
+
     #chatbot-window {
-        right: 10px;
-        left: 10px;
-        bottom: 80px;
-        width: auto;
-        height: calc(100dvh - 100px);
-        max-height: 80vh;
+        position: fixed !important;
+        right: 15px !important;
+        left: 15px !important;
+        bottom: 80px !important;
+        width: auto !important;
+        height: calc(100dvh - 100px) !important;
+        max-height: 80vh !important;
     }
 }

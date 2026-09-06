@@ -7,6 +7,7 @@ if (!document.getElementById("omar-chatbot-css")) {
     link.href = "https://omaryasser-dev.github.io/Chat_Bot/css/style.css";
     document.head.appendChild(link);
 }
+// https://omaryasser-dev.github.io/Chat_Bot/css/style.css
 (function () {
     // منع تحميل الودجت أكثر من مرة
     if (document.getElementById("omar-chatbot-widget")) {
