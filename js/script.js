@@ -1,26 +1,48 @@
-// استدعاء ملف التنسيقات في بداية السكربت فوراً
-if (!document.getElementById("omar-chatbot-css")) {
-    const link = document.createElement("link");
-    link.id = "omar-chatbot-css";
-    link.rel = "stylesheet";
-    link.type = "text/css";
-    link.href = "https://omaryasser-dev.github.io/Chat_Bot/css/style.css";
-    document.head.appendChild(link);
-}
-// https://omaryasser-dev.github.io/Chat_Bot/css/style.css
 (function () {
-    // منع تحميل الودجت أكثر من مرة
+    function resolveChatbotCssHref() {
+        const currentScript = document.currentScript;
+        if (currentScript && currentScript.src) {
+            try {
+                return new URL("../css/style.css", currentScript.src).href;
+            } catch (e) {
+                /* fall through */
+            }
+        }
+        return "chatbot/css/style.css";
+    }
+
+    if (!document.getElementById("omar-chatbot-css")) {
+        const link = document.createElement("link");
+        link.id = "omar-chatbot-css";
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = resolveChatbotCssHref();
+        document.head.appendChild(link);
+    }
+
+    if (!document.getElementById("omar-chatbot-critical-css")) {
+        const critical = document.createElement("style");
+        critical.id = "omar-chatbot-critical-css";
+        critical.textContent = [
+            "#omar-chatbot-widget{display:block!important;visibility:visible!important;opacity:1!important;overflow:visible!important;z-index:2147483000;}",
+            "#chatbot-toggle{position:fixed!important;right:20px!important;bottom:20px!important;left:auto!important;top:auto!important;width:65px!important;height:65px!important;min-width:56px!important;min-height:56px!important;margin:0!important;padding:0!important;border:none!important;border-radius:50%!important;background:#2082ff!important;color:#fff!important;display:flex!important;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(32,130,255,.4);z-index:2147483646!important;pointer-events:auto!important;visibility:visible!important;opacity:1!important;}",
+            "@media (max-width:768px){#chatbot-toggle{right:16px!important;bottom:16px!important;width:58px!important;height:58px!important;}}",
+            "@media (max-width:480px){#chatbot-toggle{right:14px!important;bottom:14px!important;width:56px!important;height:56px!important;}}",
+            "#chatbot-window.chatbot-hidden{display:none!important;}"
+        ].join("");
+        document.head.appendChild(critical);
+    }
+
+    function mountChatbot() {
     if (document.getElementById("omar-chatbot-widget")) {
         return;
     }
 
-    // 1. تحميل مكتبة FontAwesome تلقائيًا
     const fontAwesome = document.createElement("link");
     fontAwesome.rel = "stylesheet";
     fontAwesome.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css";
     document.head.appendChild(fontAwesome);
 
-    // 3. إنشاء الودجت
     const widget = document.createElement("div");
     widget.id = "omar-chatbot-widget";
 
@@ -94,13 +116,15 @@ if (!document.getElementById("omar-chatbot-css")) {
     `;
 
     document.body.appendChild(widget);
-    void widget.offsetHeight;
 
-
-    window.dispatchEvent(new Event('resize'));
-
-    // العناصر
     const toggleButton = document.getElementById("chatbot-toggle");
+    if (toggleButton) {
+        toggleButton.style.setProperty("position", "fixed", "important");
+        toggleButton.style.setProperty("display", "flex", "important");
+        toggleButton.style.setProperty("visibility", "visible", "important");
+        toggleButton.style.setProperty("opacity", "1", "important");
+        toggleButton.style.setProperty("z-index", "2147483646", "important");
+    }
     const closeButton = document.getElementById("chatbot-close");
     const resetButton = document.getElementById("chatbot-reset");
     const chatbotWindow = document.getElementById("chatbot-window");
@@ -261,6 +285,13 @@ if (!document.getElementById("omar-chatbot-css")) {
             hour: "2-digit",
             minute: "2-digit"
         });
+    }
+    }
+
+    if (document.body) {
+        mountChatbot();
+    } else {
+        document.addEventListener("DOMContentLoaded", mountChatbot);
     }
 })();
 
